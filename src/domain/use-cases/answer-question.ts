@@ -1,6 +1,6 @@
-import { Answer } from "../entities/answer";
+import { Answer } from '../entities/answer';
 
-interface AnsewerQuestionUseCaseParams {
+interface AnsewerQuestionUseCaseProps {
   instructorId: string;
   questionId: string;
   content: string;
@@ -10,9 +10,13 @@ export class AnsewerQuestionUseCase {
   public execute({
     instructorId,
     questionId,
-    content,
-  }: AnsewerQuestionUseCaseParams) {
-    const answer = new Answer(content);
+    content
+  }: AnsewerQuestionUseCaseProps) {
+    const answer = new Answer({
+      content,
+      authorId: instructorId,
+      questionId
+    });
 
     return answer;
   }
